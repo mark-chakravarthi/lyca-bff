@@ -1,4 +1,5 @@
 import fastify from "fastify";
+import ProfileRoute from "./routes/profile";
 
 // import { FromSchema } from "json-schema-to-ts";
 
@@ -8,6 +9,7 @@ import fastify from "fastify";
 export const build = (opts = {}) => {
   const app = fastify(opts);
   // app.register(auth, { prefix: "/v2/auth" });
+  app.register(ProfileRoute);
 
   return app;
 };
