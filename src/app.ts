@@ -1,37 +1,40 @@
-import fastify, { FastifyInstance } from "fastify";
-import ProfileRoute from "./routes/profile";
+import fastify, {
+  FastifyReply,
+  FastifyRequest,
+  FastifyInstance,
+} from "fastify";
+import { fastifyJwt } from "@fastify/jwt";
 
-// import { FromSchema } from "json-schema-to-ts";
+import profileRoutes from "./modules/profile/profile.route";
 
-// import { QuerystringSchema as QuerystringSchemaInterface } from "./types/QueryString";
-// import { HeadersSchema as HeadersSchemaInterface } from "./types/Headers";
+import { profileSchemas } from "./modules/profile/profile.schema";
+
+declare module "fastify" {
+  export interface FastifyInstance {
+    checkForBearer: any;
+  }
+}
 
 export const build = (opts = {}) => {
   const app: FastifyInstance = fastify(opts);
-  // app.register(auth, { prefix: "/v2/auth" });
-  app.register(ProfileRoute);
+
+  app.register(fastifyJwt, { secret: "secret" });
+
+  app.decorate(
+    "checkForBearer",
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      if (!request.headers["authorization"])
+        reply.code(401).send("Authorization header missing.");
+    }
+  );
+
+  const schemas = [...profileSchemas];
+
+  for (let schema of schemas) {
+    app.addSchema(schema);
+  }
+
+  app.register(profileRoutes, { prefix: "/bff" });
 
   return app;
 };
-
-// server.get<{
-//   Querystring: FromSchema<typeof QuerystringSchemaInterface>;
-//   Headers: FromSchema<typeof HeadersSchemaInterface>;
-// }>(
-//   "/auth",
-//   {
-//     schema: {
-//       querystring: QuerystringSchemaInterface,
-//       headers: HeadersSchemaInterface,
-//     },
-//     preValidation: (request, reply, done) => {
-//       const { username, password } = request.query;
-//       done(username !== "admin" ? new Error("Must be admin") : undefined);
-//     },
-//   },
-//   async (request, reply) => {
-//     const customerHeader = request.headers["h-custom"];
-//     // do something with request data
-//     return customerHeader;
-//   }
-// );

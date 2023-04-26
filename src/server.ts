@@ -1,7 +1,6 @@
-// const { build } = require("./app.js");
 import { build } from "./app";
 
-const app = build({ logger: true });
+export const app = build({ logger: true });
 
 app.listen({ port: 8080 }, (err, address) => {
   if (err) {
