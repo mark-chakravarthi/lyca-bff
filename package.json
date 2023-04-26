@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc -p tsconfig.json",
-    "start": "node src/server",
+    "start": "node dist/server",
     "compile-schemas": "json2ts -i src/schemas -o src/types"
   },
   "keywords": [],
