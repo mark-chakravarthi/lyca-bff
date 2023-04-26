@@ -11,7 +11,7 @@ const ProfileRoute: FastifyPluginAsync = async (
 ) => {
   server.get("/", {}, async (request, reply) => {
     try {
-      return reply.code(200).send({ message: "Success!" });
+      return { message: "Sup!" };
     } catch (error) {
       request.log.error(error);
       return reply.send(500);

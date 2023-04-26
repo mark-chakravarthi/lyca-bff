@@ -2,11 +2,11 @@
   "name": "lyca-bff",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/server",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc -p tsconfig.json",
-    "start": "node dist/server",
+    "start": "tsc -w & nodemon dist/server",
     "compile-schemas": "json2ts -i src/schemas -o src/types"
   },
   "keywords": [],
