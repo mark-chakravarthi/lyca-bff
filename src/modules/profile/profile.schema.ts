@@ -22,7 +22,7 @@ type SimCategory = z.infer<typeof SIM_CATEGORY>;
 const CONSENT_TYPE = z.enum(["LOCATION"]);
 type ConsentType = z.infer<typeof CONSENT_TYPE>;
 
-const userCore = {
+const profileCore = {
   title: z.string(),
   first_name: z.string(),
   last_name: z.string(),
@@ -77,10 +77,10 @@ const userCore = {
   }),
 };
 
-const createProfileRequestSchema = z.object(userCore);
+const createProfileRequestSchema = z.object(profileCore);
 
 const profileResponseSchema = z.object({
-  ...userCore,
+  ...profileCore,
   profile_id: z.string().uuid(),
   created_at: z.string().datetime(),
   update_at: z.date(),
