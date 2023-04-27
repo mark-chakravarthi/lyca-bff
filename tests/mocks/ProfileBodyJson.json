@@ -1,0 +1,59 @@
+{
+            "title": "John",
+            "first_name": "John",
+            "last_name": "Doe",
+            "date_of_birth": "2000-01-01T00:00:00Z",
+            "language": "en-gb",
+            "email_id": "john.doe@example.com",
+            "address_dlts": {
+                "address_type": "home",
+                "address_line_1": "123 Main St",
+                "address_line_2": "",
+                "location": "New York",
+                "state_code": "GB-CAM",
+                "country_code": "GB-ENG",
+                "postal_code": "10001",
+                "is_business_address": false,
+                "organization_name": "",
+                "coordinates": {
+                    "latitude": 40.7128,
+                    "longitude": -74.006
+                },
+                "connection_dtls": [
+                    {
+                        "connection_type": "prepaid",
+                        "SIM_CATEGORY": "NORMAL_SIM",
+                        "display_name": "John's phone",
+                        "msisdn": 1234567890,
+                        "iccid": 1234567890,
+                        "imsi": 1234567890,
+                        "puk_code": 1234,
+                        "is_default": true,
+                        "is_primary": true,
+                        "is_parent": false,
+                        "parent_imsi": null
+                    }
+                ],
+                "consents": [
+                    {
+                        "consent_type": "LOCATION",
+                        "consent_given": true,
+                        "consent_date": "2023-04-27T10:00:00.000Z",
+                        "tex_details": "I agree to receive marketing communications from your company"
+                    }
+                ],
+                "addnl_attributes": [
+                    {
+                        "name": "age",
+                        "value": "33",
+                        "data_type_value": "number"
+                    },
+                    {
+                        "name": "favorite_color",
+                        "value": "blue",
+                        "data_type_value": "string"
+                    }
+                ],
+                "created_by": "John"
+            }
+        }

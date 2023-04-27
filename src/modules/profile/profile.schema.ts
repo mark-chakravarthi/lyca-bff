@@ -77,6 +77,10 @@ const profileCore = {
   }),
 };
 
+const profileParams = {
+  profileId: z.string()
+}
+
 const createProfileRequestSchema = z.object(profileCore);
 
 const profileResponseSchema = z.object({
@@ -87,12 +91,17 @@ const profileResponseSchema = z.object({
   updated_by: z.string().datetime(),
 });
 
+const profileParamsSchema = z.object(profileParams)
+
+
 export type CreateProfileInput = z.infer<typeof createProfileRequestSchema>;
+export type ProfileParamsType = z.infer<typeof profileParamsSchema>
 
 export const { schemas: profileSchemas, $ref } = buildJsonSchemas(
   {
     createProfileRequestSchema,
     profileResponseSchema,
+    profileParamsSchema
   },
   { $id: "ProfileSchema" }
 );

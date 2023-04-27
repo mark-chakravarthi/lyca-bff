@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { CreateProfileInput } from "./profile.schema";
+import { CreateProfileInput, ProfileParamsType } from "./profile.schema";
 
 async function createProfileHandler(
   request: FastifyRequest<{
@@ -19,4 +19,13 @@ async function getMyProfileHandler(
   return "Profile Fetched!";
 }
 
-export { createProfileHandler, getMyProfileHandler };
+async function getOtherProfileHandler(
+  request: FastifyRequest<{ Params: ProfileParamsType }>,
+  reply: FastifyReply
+) {
+
+  //type error
+  const { profileId } = request.params;
+  return `Profile Fetched! `;
+}
+export { createProfileHandler, getMyProfileHandler, getOtherProfileHandler };
